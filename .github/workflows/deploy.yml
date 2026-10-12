@@ -44,7 +44,7 @@ jobs:
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: kv:namespace create "notes"
+          command: kv namespace create "notes"
 
       - name: Create SCN_SHARE KV namespace if needed
         if: steps.check_wrangler_toml.outputs.share_update_needed == 'true'
@@ -52,7 +52,7 @@ jobs:
         uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: kv:namespace create "share"
+          command: kv namespace create "share"
 
       - name: Update wrangler.toml with KV IDs and push changes
         if: steps.check_wrangler_toml.outputs.notes_update_needed == 'true' || steps.check_wrangler_toml.outputs.share_update_needed == 'true'
